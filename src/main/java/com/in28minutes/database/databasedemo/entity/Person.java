@@ -2,10 +2,23 @@ package com.in28minutes.database.databasedemo.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="person")
 public class Person {
+	@Id
+	@GeneratedValue
 	private int id;
+	@Column(name="name")
 	private String name;
+	@Column(name="location")
 	private String location;
+	@Column(name="birth_date")
 	private Date birthDate;
 
 	public Person() {
