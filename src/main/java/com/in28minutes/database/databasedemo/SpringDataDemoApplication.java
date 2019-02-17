@@ -10,23 +10,23 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Date;
 
 import com.in28minutes.database.databasedemo.entity.Person;
-import com.in28minutes.database.databasedemo.jpa.PersonJpaRepository;
+import com.in28minutes.database.databasedemo.springdata.PersonSpringDataRepository;
 
-//@SpringBootApplication
-public class JpaDemoApplication implements CommandLineRunner {
+@SpringBootApplication
+public class SpringDataDemoApplication implements CommandLineRunner {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	private PersonJpaRepository jpaRepository;
+	private PersonSpringDataRepository jpaRepository;
 	public static void main(String[] args) {
-		SpringApplication.run(JpaDemoApplication.class, args);
+		SpringApplication.run(SpringDataDemoApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
 		logger.info("User id 10001: {}", jpaRepository.findById(10001));
-		logger.info("Inserting 10004: {}", jpaRepository.insert(new Person("Tara", "Berlin", new Date())));
-		logger.info("Update 10003: {}", jpaRepository.update(new Person(10003, "Pieter", "Utrecht", new Date())));
+		logger.info("Inserting 10004: {}", jpaRepository.save(new Person("Tara", "Berlin", new Date())));
+		logger.info("Update 10003: {}", jpaRepository.save(new Person(10003, "Pieter", "Utrecht", new Date())));
 		jpaRepository.deleteById(10002);
 		logger.info("All users: {}", jpaRepository.findAll());
 	}
